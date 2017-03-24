@@ -11,11 +11,13 @@
 <p th:text="'Enter for: ' + ${word} + '  (' + ${reading} + ' - ' + ${svenska} + ') !'" />
 <form th:action="grammar">
     <input th:name="answer" type="text"/>
-    <input th:name="clazz" type="hidden" th:value="${clazz}"/>
+    <input th:name="class" type="hidden" th:value="${clazz}"/>
     <input th:name="method" type="hidden" th:value="${method}"/>
+    <input th:name="type" type="hidden" th:value="${type}"/>
     <input th:name="word" type="hidden" th:value="${word}"/>
-    <input type="submit">GO</input>
+    <input type="submit"/>
 </form>
 
+<a href="/">Hem</a>
 </body>
 </html>

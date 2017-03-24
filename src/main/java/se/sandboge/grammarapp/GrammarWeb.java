@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import se.sandboge.japanese.conjugation.Adjective;
+import se.sandboge.japanese.conjugation.AdjectiveType;
 import se.sandboge.japanese.conjugation.Verb;
 
 @Controller
@@ -62,6 +64,7 @@ public class GrammarWeb {
             { "がんばる", "頑張る", "göra sitt bästa" },
             { "きえる", "消える", "försvinna" },
             { "くらべる", "比べる", "jämföra" },
+            { "くる", "来る", "komma (använd hiragana)" },
             { "けいかくする", "計画する", "planera" },
             { "けしょうする", "化粧する", "sminka sig" },
             { "けど", "けど", "dock" },
@@ -153,41 +156,110 @@ public class GrammarWeb {
             { "プロポーズする", "プロポーズする", "fria" },
             { "気をつける", "気をつける", "vara försiktig" },
     };
+    private static String[][] adjectives = {
+            { "あおい", "青い", "blå", "i" },
+            { "あかい", "赤い", "röd", "i" },
+            { "あかるい", "明るい", "ljus", "i" },
+            { "あつい", "暑い", "het", "i" },
+            { "あぶない", "危ない", "farlig", "i" },
+            { "いろいろ", "いろいろ", "blandade", "na" },
+            { "うらやましい", "羨ましい", "avundsjuk", "i" },
+            { "うれしい", "嬉しい", "glad", "i" },
+            { "おもい", "重い", "tung", "i" },
+            { "かなしい", "悲しい", "ledsen", "i" },
+            { "からい", "辛い", "kryddstark", "i" },
+            { "かるい", "軽い", "lätt", "i" },
+            { "きたない", "汚い", "smutsig", "i" },
+            { "きびしい", "厳しい", "sträng", "i" },
+            { "くらい", "暗い", "dystert", "i" },
+            { "さむい", "寒い", "kall", "i" },
+            { "しあわせ", "幸せ", "lycklig", "na" },
+            { "すくない", "少ない", "några", "i" },
+            { "すごい", "凄い", "fantastisk", "i" },
+            { "だめ", "駄目", "värdelös", "na" },
+            { "ちかい", "近い", "nära", "i" },
+            { "つよい", "強い", "kraftfull", "i" },
+            { "とおい", "遠い", "långt", "i" },
+            { "はずかしい", "恥ずかしい", "generad", "i" },
+            { "ひくい", "低い", "kort", "i" },
+            { "ひろい", "広い", "vid", "i" },
+            { "ふとい", "太い", "fet", "i" },
+            { "ほしい", "欲しい", "önskad", "i" },
+            { "みじかい", "短い", "kort", "i" },
+            { "ゆうめい", "有名", "berömd", "na" },
+            { "よわい", "弱い", "svag", "i" },
+            { "わるい", "悪い", "dålig", "i" },
+    };
 
     @RequestMapping("/grammar")
     public String grammar(
             @RequestParam(value="class", required=false, defaultValue="Verb") String clazz,
+            @RequestParam(value="type", required=false, defaultValue="i") String type,
             @RequestParam(value="method", required=false, defaultValue="asPoliteForm") String method,
             @RequestParam(value="message", required=false, defaultValue="") String message,
             @RequestParam(value="word", required=false) String word,
-            @RequestParam(value="reading", required=false) String reading,
+            @RequestParam(value="reading", required=false, defaultValue = "") String reading,
             @RequestParam(value="svenska", required=false) String svenska,
             @RequestParam(value="answer", required=false) String answer,
             Model model) {
         if (answer != null) {
-            Verb v = new Verb(word);
-            String s = v.asPoliteForm();
-            switch (method) {
-                case "asPoliteForm" :
-                    s = v.asPoliteForm();
-                    break;
-                case "asPotentialForm" :
-                    s = v.asPotentialForm();
-                    break;
+            if (clazz.equals("Verb")) {
+                Verb v = new Verb(word);
+                String s = v.asPoliteForm();
+                switch (method) {
+                    case "asPoliteForm":
+                        s = v.asPoliteForm();
+                        break;
+                    case "asPotentialForm":
+                        s = v.asPotentialForm();
+                        break;
+                }
+                if (s.equals(answer)) {
+                    model.addAttribute("message", "Correct: " + word + " = " + s);
+                } else {
+                    model.addAttribute("message", "Wrong: " + word + " should be " + s + " NOT " + answer);
+                }
+            } else if (clazz.equals("Adjective")) {
+                Adjective adjective = new Adjective(word, AdjectiveType.valueOf(type));
+                String s = adjective.asPoliteForm();
+                switch (method) {
+                    case "asPoliteForm":
+                        s = adjective.asPoliteForm();
+                        break;
+                    case "asShortForm":
+                        s = adjective.asShortForm();
+                        break;
+                    case "asLooksLikeForm":
+                        s = adjective.asLooksLikeForm();
+                        break;
+                    case "asLooksLikeNegForm":
+                        s = adjective.asLooksLikeNegForm();
+                        break;
+                }
+                if (s.equals(answer)) {
+                    model.addAttribute("message", "Correct: " + word + " = " + s);
+                } else {
+                    model.addAttribute("message", "Wrong: " + word + " should be " + s + " NOT " + answer);
+                }
             }
-            if (s.equals(answer)) {
-                model.addAttribute("message", "Correct: " + word + " = " + s);
-            } else {
-                model.addAttribute("message", "Wrong: " + word + " should be " + s + " NOT " + answer);
-            }
+        }
+        if (clazz.equals("Verb")) {
+            int index = (int)(Math.random()*verbs.length);
+            word = verbs[index][1];
+            reading = verbs[index][0];
+            svenska = verbs[index][2];
+        } else if (clazz.endsWith("Adjective")) {
+            int index = (int)(Math.random()*adjectives.length);
+            word = adjectives[index][1];
+            reading = adjectives[index][0];
+            svenska = adjectives[index][2];
+            model.addAttribute("type", adjectives[index][3]);
         }
         model.addAttribute("clazz", clazz);
         model.addAttribute("method", method);
-        int index = (int)(Math.random()*verbs.length);
-        word = verbs[index][1];
         model.addAttribute("word", word);
-        model.addAttribute("reading", verbs[index][0]);
-        model.addAttribute("svenska", verbs[index][2]);
+        model.addAttribute("reading", reading.equals(word) ? "" : reading);
+        model.addAttribute("svenska", svenska);
         return "grammar";
     }
 }
