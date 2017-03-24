@@ -7,10 +7,12 @@
 <body>
 
 <p th:text="${message}" />
-<p th:text="'Hello, ' + ${clazz} + ', ' + ${method} + '!'" />
-<p th:text="'Enter for: ' + ${word} + '!'" />
+<p th:text="'Testing: ' + ${clazz} + ', ' + ${method} + '!'" />
+<p th:text="'Enter for: ' + ${word} + '  (' + ${reading} + ' - ' + ${svenska} + ') !'" />
 <form th:action="grammar">
     <input th:name="answer" type="text"/>
+    <input th:name="clazz" type="hidden" th:value="${clazz}"/>
+    <input th:name="method" type="hidden" th:value="${method}"/>
     <input th:name="word" type="hidden" th:value="${word}"/>
     <input type="submit">GO</input>
 </form>
