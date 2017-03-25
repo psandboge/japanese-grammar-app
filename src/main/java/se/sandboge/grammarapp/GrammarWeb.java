@@ -162,6 +162,10 @@ public class GrammarWeb {
             { "あかるい", "明るい", "ljus", "i" },
             { "あつい", "暑い", "het", "i" },
             { "あぶない", "危ない", "farlig", "i" },
+            { "いい", "いい", "bra", "yoi" },
+            { "いい", "いい", "bra", "yoi" },
+            { "いい", "いい", "bra", "yoi" },
+            { "いい", "いい", "bra", "yoi" },
             { "いろいろ", "いろいろ", "blandade", "na" },
             { "うらやましい", "羨ましい", "avundsjuk", "i" },
             { "うれしい", "嬉しい", "glad", "i" },
@@ -212,6 +216,33 @@ public class GrammarWeb {
                         break;
                     case "asPotentialForm":
                         s = v.asPotentialForm();
+                        break;
+                    case "asPreparationForm":
+                        s = v.asPreparationForm();
+                        break;
+                    case "asAdviceForm":
+                        s = v.asAdviceForm();
+                        break;
+                    case "asDeterminationForm":
+                        s = v.asDeterminationForm();
+                        break;
+                    case "asVolitionalForm":
+                        s = v.asVolitionalForm();
+                        break;
+                    case "asItIsPossibleForm":
+                        s = v.asItIsPossibleForm();
+                        break;
+                    case "asItIsPossibleNegForm":
+                        s = v.asItIsPossibleNegForm();
+                        break;
+                    case "asItIsPossiblePastForm":
+                        s = v.asItIsPossiblePastForm();
+                        break;
+                    case "asItIsPossiblePastNegForm":
+                        s = v.asItIsPossiblePastNegForm();
+                        break;
+                    case "asHaveALookAtForm":
+                        s = v.asHaveALookAtForm();
                         break;
                 }
                 if (s.equals(answer)) {
