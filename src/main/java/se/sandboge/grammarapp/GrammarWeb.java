@@ -8,9 +8,36 @@ import se.sandboge.japanese.conjugation.Adjective;
 import se.sandboge.japanese.conjugation.AdjectiveType;
 import se.sandboge.japanese.conjugation.Verb;
 
+import java.lang.reflect.InvocationTargetException;
+
 @Controller
 public class GrammarWeb {
-    private static String[][] verbs = {
+    private final static String[][] transativityPairs = {
+            {"おこす", "起こす", "", "おきる", "起きる", ""},
+            {"もやす", "燃やす", "", "もえる", "燃える", ""},
+            {"さげる", "下げる", "", "さがる", "下がる", ""},
+            {"あげる", "上げる", "", "あがる", "上がる", ""},
+            {"しめる", "閉める", "", "しまる", "閉まる", ""},
+            {"あける", "開ける", "", "あく", "開く", ""},
+            {"はじめる", "始める", "", "はじまる", "始まる", ""},
+            {"きめる", "決める", "", "きまる", "決まる", ""},
+            {"とめる", "止める", "", "とまる", "止まる", ""},
+            {"みつける", "見つける", "", "みつかる", "見つかる", ""},
+            {"かえる", "変える", "", "かわる", "変わる", ""},
+            {"つける", "つける", "", "つく", "つく", ""},
+            {"", "", "", "", "", ""},
+            {"だす", "出す", "", "でる", "出る", ""},
+            {"こわす", "壊す", "", "こわれる", "壊れる", ""},
+            {"よごす", "汚す", "", "よごれる", "汚れる", ""},
+            {"", "", "", "", "", ""},
+            {"", "", "", "", "", ""},
+            {"", "", "", "", "", ""},
+            {"", "", "", "", "", ""},
+            {"", "", "", "", "", ""},
+            {"", "", "", "", "", ""},
+    };
+
+    private final static String[][] verbs = {
             { "あう", "会う", "möta" },
             { "あう", "合う", "matcha" },
             { "あきらめる", "諦める", "ge upp" },
@@ -74,7 +101,6 @@ public class GrammarWeb {
             { "ころぶ", "転ぶ", "falla" },
             { "こわす", "壊す", "göra sönder" },
             { "こわれる", "壊れる", "vara trasig" },
-            { "さいきん", "最近", "nyligen" },
             { "さがす", "探す", "titta efter" },
             { "さく", "咲く", "blomma" },
             { "さそう", "誘う", "bjuda in" },
@@ -156,7 +182,7 @@ public class GrammarWeb {
             { "プロポーズする", "プロポーズする", "fria" },
             { "気をつける", "気をつける", "vara försiktig" },
     };
-    private static String[][] adjectives = {
+    private final static String[][] adjectives = {
             { "あおい", "青い", "blå", "i" },
             { "あかい", "赤い", "röd", "i" },
             { "あかるい", "明るい", "ljus", "i" },
@@ -210,41 +236,61 @@ public class GrammarWeb {
             if (clazz.equals("Verb")) {
                 Verb v = new Verb(word);
                 String s = v.asPoliteForm();
-                switch (method) {
-                    case "asPoliteForm":
-                        s = v.asPoliteForm();
-                        break;
-                    case "asPotentialForm":
-                        s = v.asPotentialForm();
-                        break;
-                    case "asPreparationForm":
-                        s = v.asPreparationForm();
-                        break;
-                    case "asAdviceForm":
-                        s = v.asAdviceForm();
-                        break;
-                    case "asDeterminationForm":
-                        s = v.asDeterminationForm();
-                        break;
-                    case "asVolitionalForm":
-                        s = v.asVolitionalForm();
-                        break;
-                    case "asItIsPossibleForm":
-                        s = v.asItIsPossibleForm();
-                        break;
-                    case "asItIsPossibleNegForm":
-                        s = v.asItIsPossibleNegForm();
-                        break;
-                    case "asItIsPossiblePastForm":
-                        s = v.asItIsPossiblePastForm();
-                        break;
-                    case "asItIsPossiblePastNegForm":
-                        s = v.asItIsPossiblePastNegForm();
-                        break;
-                    case "asHaveALookAtForm":
-                        s = v.asHaveALookAtForm();
-                        break;
+                try {
+                    s = (String) (v.getClass().getMethod(method).invoke(v));
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
                 }
+//                switch (method) {
+//                    case "asPoliteForm":
+//                        s = v.asPoliteForm();
+//                        break;
+//                    case "asPotentialForm":
+//                        s = v.asPotentialForm();
+//                        break;
+//                    case "asPreparationForm":
+//                        s = v.asPreparationForm();
+//                        break;
+//                    case "asAdviceForm":
+//                        s = v.asAdviceForm();
+//                        break;
+//                    case "asDeterminationForm":
+//                        s = v.asDeterminationForm();
+//                        break;
+//                    case "asVolitionalForm":
+//                        s = v.asVolitionalForm();
+//                        break;
+//                    case "asItIsPossibleForm":
+//                        s = v.asItIsPossibleForm();
+//                        break;
+//                    case "asItIsPossibleNegForm":
+//                        s = v.asItIsPossibleNegForm();
+//                        break;
+//                    case "asItIsPossiblePastForm":
+//                        s = v.asItIsPossiblePastForm();
+//                        break;
+//                    case "asItIsPossiblePastNegForm":
+//                        s = v.asItIsPossiblePastNegForm();
+//                        break;
+//                    case "asHaveALookAtForm":
+//                        s = v.asHaveALookAtForm();
+//                        break;
+//                    case "asPoliterRequestForm":
+//                        s = v.asPoliterRequestForm();
+//                        break;
+//                    case "asRequestForm":
+//                        s = v.asRequestForm();
+//                        break;
+//                    case "asCasualRequestForm":
+//                        s = v.asCasualRequestForm();
+//                        break;
+//                    case "asGoodWishForm":
+//                        s = v.asGoodWishForm();
+//                        break;
+//                    case "asSelfWishForm":
+//                        s = v.asSelfWishForm();
+//                        break;
+//                }
                 if (s.equals(answer)) {
                     model.addAttribute("message", "Correct: " + word + " = " + s);
                 } else {
