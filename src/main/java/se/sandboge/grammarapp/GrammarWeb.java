@@ -9,6 +9,7 @@ import se.sandboge.japanese.conjugation.AdjectiveType;
 import se.sandboge.japanese.conjugation.Verb;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 
 @Controller
 public class GrammarWeb {
@@ -36,6 +37,42 @@ public class GrammarWeb {
             {"", "", "", "", "", ""},
             {"", "", "", "", "", ""},
     };
+
+    private final static HashMap<String, String> links = new HashMap<>();
+    static {
+        links.put("asPotentialForm", "gcon_15");
+        links.put("asAlternativeWishNegForm", "gcon_14");
+        links.put("asAlternativeWishForm", "gcon_14");
+        links.put("asConcurrentActionForm", "gcon_13");
+        links.put("asCauseForm", "gcon_12");
+        links.put("asRegretablyForm", "gcon_11");
+        links.put("asFinishForm", "gcon_10");
+        links.put("asYAfterXForm", "gcon_8");
+        links.put("asYBeforeXForm", "gcon_7");
+        links.put("asAppearsForm", "gcon_6");
+        links.put("asAppearsNegForm", "gcon_6");
+        links.put("asAppearsPastForm", "gcon_6");
+        links.put("asAppearsPastNegForm", "gcon_6");
+        links.put("asNeedNotForm", "gcon_4");
+        links.put("asIHearSoudesuForm", "gcon_1");
+        links.put("asIHearTteForm", "gcon_2");
+        links.put("asTeNegForm", "gcon_46");
+        links.put("asApologizeForNegForm", "gcon_44");
+        links.put("asApologizeNegForm", "gcon_44");
+        links.put("asSelfWishCasualForm", "gcon_41");
+        links.put("asSelfWishForm", "gcon_41");
+        links.put("asGoodWishForm", "gcon_40");
+        links.put("asCasualRequestForm", "gcon_39");
+        links.put("asRequestForm", "gcon_38");
+        links.put("asPoliterRequestForm", "gcon_37");
+        links.put("as", "gcon_");
+        links.put("as", "gcon_");
+        links.put("as", "gcon_");
+        links.put("as", "gcon_");
+        links.put("as", "gcon_");
+        links.put("as", "gcon_");
+        links.put("as", "gcon_");
+    }
 
     private final static String[][] verbs = {
             { "あう", "会う", "möta" },
@@ -241,56 +278,6 @@ public class GrammarWeb {
                 } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
-//                switch (method) {
-//                    case "asPoliteForm":
-//                        s = v.asPoliteForm();
-//                        break;
-//                    case "asPotentialForm":
-//                        s = v.asPotentialForm();
-//                        break;
-//                    case "asPreparationForm":
-//                        s = v.asPreparationForm();
-//                        break;
-//                    case "asAdviceForm":
-//                        s = v.asAdviceForm();
-//                        break;
-//                    case "asDeterminationForm":
-//                        s = v.asDeterminationForm();
-//                        break;
-//                    case "asVolitionalForm":
-//                        s = v.asVolitionalForm();
-//                        break;
-//                    case "asItIsPossibleForm":
-//                        s = v.asItIsPossibleForm();
-//                        break;
-//                    case "asItIsPossibleNegForm":
-//                        s = v.asItIsPossibleNegForm();
-//                        break;
-//                    case "asItIsPossiblePastForm":
-//                        s = v.asItIsPossiblePastForm();
-//                        break;
-//                    case "asItIsPossiblePastNegForm":
-//                        s = v.asItIsPossiblePastNegForm();
-//                        break;
-//                    case "asHaveALookAtForm":
-//                        s = v.asHaveALookAtForm();
-//                        break;
-//                    case "asPoliterRequestForm":
-//                        s = v.asPoliterRequestForm();
-//                        break;
-//                    case "asRequestForm":
-//                        s = v.asRequestForm();
-//                        break;
-//                    case "asCasualRequestForm":
-//                        s = v.asCasualRequestForm();
-//                        break;
-//                    case "asGoodWishForm":
-//                        s = v.asGoodWishForm();
-//                        break;
-//                    case "asSelfWishForm":
-//                        s = v.asSelfWishForm();
-//                        break;
-//                }
                 if (s.equals(answer)) {
                     model.addAttribute("message", "Correct: " + word + " = " + s);
                 } else {
@@ -337,6 +324,7 @@ public class GrammarWeb {
         model.addAttribute("word", word);
         model.addAttribute("reading", reading.equals(word) ? "" : reading);
         model.addAttribute("svenska", svenska);
+        model.addAttribute("link", "g1200a.html#" + links.get(method));
         return "grammar";
     }
 }
