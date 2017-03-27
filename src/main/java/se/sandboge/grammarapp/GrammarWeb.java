@@ -40,7 +40,8 @@ public class GrammarWeb {
 
     private final static HashMap<String, String> links = new HashMap<>();
     static {
-        links.put("asPotentialForm", "gcon_15");
+        links.put("asEbaForm", "gcon_14");
+        links.put("asEbaNegForm", "gcon_14");
         links.put("asAlternativeWishNegForm", "gcon_14");
         links.put("asAlternativeWishForm", "gcon_14");
         links.put("asConcurrentActionForm", "gcon_13");
@@ -58,20 +59,25 @@ public class GrammarWeb {
         links.put("asIHearTteForm", "gcon_2");
         links.put("asTeNegForm", "gcon_46");
         links.put("asApologizeForNegForm", "gcon_44");
-        links.put("asApologizeNegForm", "gcon_44");
+        links.put("asApologizeForForm", "gcon_44");
         links.put("asSelfWishCasualForm", "gcon_41");
         links.put("asSelfWishForm", "gcon_41");
         links.put("asGoodWishForm", "gcon_40");
         links.put("asCasualRequestForm", "gcon_39");
         links.put("asRequestForm", "gcon_38");
         links.put("asPoliterRequestForm", "gcon_37");
-        links.put("as", "gcon_");
-        links.put("as", "gcon_");
-        links.put("as", "gcon_");
-        links.put("as", "gcon_");
-        links.put("as", "gcon_");
-        links.put("as", "gcon_");
-        links.put("as", "gcon_");
+        links.put("asPreparationForm", "gcon_32");
+        links.put("asDeterminationForm", "gcon_31");
+        links.put("asVolitionalForm", "gcon_30");
+        links.put("asAdviceForm", "gcon_27");
+        links.put("asItIsPossibleForm", "gcon_23");
+        links.put("asItIsPossibleNegForm", "gcon_23");
+        links.put("asItIsPossiblePastForm", "gcon_23");
+        links.put("asItIsPossiblePastNegForm", "gcon_23");
+        links.put("asHaveALookAtForm", "gcon_19");
+        links.put("asPotentialForm", "gcon_15");
+        links.put("asLooksLikeForm", "gcon_17");
+        links.put("asLooksLikeNegForm", "gcon_17");
     }
 
     private final static String[][] verbs = {
@@ -131,7 +137,6 @@ public class GrammarWeb {
             { "くる", "来る", "komma (använd hiragana)" },
             { "けいかくする", "計画する", "planera" },
             { "けしょうする", "化粧する", "sminka sig" },
-            { "けど", "けど", "dock" },
             { "こたえる", "答える", "svara" },
             { "こまる", "困る", "vara orolig" },
             { "こむ", "込む", "inkludera" },
@@ -157,7 +162,6 @@ public class GrammarWeb {
             { "すむ", "住む", "bo" },
             { "せいさんする", "生産する", "producera" },
             { "せわする", "世話する", "sköta om" },
-            { "そうだん", "相談", "konsultation" },
             { "そうだんする", "相談する", "konsultera" },
             { "そつぎょうする", "卒業する", "ta examen" },
             { "たからくじにあたる", "宝くじに当たる", "vinna på lotteri" },
