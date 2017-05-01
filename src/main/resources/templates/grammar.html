@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Grammar exercise</title>
+    <title>Grammatikövning</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
 <p th:text="${message}" />
-<p th:text="'Testing: ' + ${clazz} + ', ' + ${method} + '!'" />
-<p th:text="'Enter for: ' + ${word} + '  (' + ${reading} + ' - ' + ${svenska} + ') !'" />
+<p th:text="'Övar: ' + ${clazz} + ', ' + ${method} + '!'" />
+<p th:text="'Ange böjning för: ' + ${word} + '  (' + ${reading} + ' - ' + ${svenska} + ') !'" />
 <form th:action="grammar">
     <input th:name="answer" type="text"/>
     <input th:name="class" type="hidden" th:value="${clazz}"/>

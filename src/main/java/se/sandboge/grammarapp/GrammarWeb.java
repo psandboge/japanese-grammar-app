@@ -283,9 +283,9 @@ public class GrammarWeb {
                     e.printStackTrace();
                 }
                 if (s.equals(answer)) {
-                    model.addAttribute("message", "Correct: " + word + " = " + s);
+                    model.addAttribute("message", "Rätt: " + word + " => " + s);
                 } else {
-                    model.addAttribute("message", "Wrong: " + word + " should be " + s + " NOT " + answer);
+                    model.addAttribute("message", "Fel: " + word + " ska vara " + s + " INTE " + answer);
                 }
             } else if (clazz.equals("Adjective")) {
                 Adjective adjective = new Adjective(word, AdjectiveType.valueOf(type));
@@ -305,9 +305,9 @@ public class GrammarWeb {
                         break;
                 }
                 if (s.equals(answer)) {
-                    model.addAttribute("message", "Correct: " + word + " = " + s);
+                    model.addAttribute("message", "Rätt: " + word + " => " + s);
                 } else {
-                    model.addAttribute("message", "Wrong: " + word + " should be " + s + " NOT " + answer);
+                    model.addAttribute("message", "Fel: " + word + " ska vara " + s + " INTE " + answer);
                 }
             }
         }
