@@ -3,22 +3,32 @@
 <head>
     <title>Grammatikövning</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="app.css"/>
 </head>
 <body>
-
-<p th:text="${message}" />
-<p th:text="'Övar: ' + ${clazz} + ', ' + ${method} + '!'" />
-<p th:text="'Ange böjning för: ' + ${word} + '  (' + ${reading} + ' - ' + ${svenska} + ') !'" />
-<form th:action="grammar">
-    <input th:name="answer" type="text"/>
-    <input th:name="class" type="hidden" th:value="${clazz}"/>
-    <input th:name="method" type="hidden" th:value="${method}"/>
-    <input th:name="type" type="hidden" th:value="${type}"/>
-    <input th:name="word" type="hidden" th:value="${word}"/>
-    <input type="submit"/>
-</form>
-
-<a href="/">Hem</a>
-<a th:href="${link}">Hjälp</a>
+<div class="enclosure">
+    <header>
+        <p th:class="result" th:text="${message}" />
+        <p th:class="exercise" th:text="'Övar: ' + ${clazz} + ', ' + ${method} + '!'" />
+    </header>
+    <content>
+        <p th:text="'Ange böjning för: ' + ${word} + '  (' + ${reading} + ' - ' + ${svenska} + ') !'" />
+        <form th:action="grammar">
+            <input th:name="answer" type="text"/>
+            <input th:name="class" type="hidden" th:value="${clazz}"/>
+            <input th:name="method" type="hidden" th:value="${method}"/>
+            <input th:name="type" type="hidden" th:value="${type}"/>
+            <input th:name="word" type="hidden" th:value="${word}"/>
+            <input type="submit"/>
+        </form>
+    </content>
+    <aside>
+        <p>Volitional är en verbform som används för att föreslå något, liknande men mindre formellt än ましょう. Bildas så här: Ru-verb, ta bort ru och lägg på よう. U-verb, ta bort u och lägg på おう. 来る blir こよう och する, しよう. Lägger man på ka, så vill man ha motpartens åsikt.</p>
+    </aside>
+    <footer>
+        <a href="/">Hem</a>
+        <a th:href="${link}">Hjälp</a>
+    </footer>
+</div>
 </body>
 </html>

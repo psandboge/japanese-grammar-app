@@ -1,0 +1,51 @@
+body {
+    background-color: floralwhite;
+    font-family: sans-serif;
+    margin: 0;
+}
+
+a {
+    background-color: aliceblue;
+    color: crimson;
+    border-radius: 5px;
+    line-height: 32px;
+    padding: 3px;
+    text-decoration: none;
+}
+
+a:visited {
+    color: palevioletred;
+}
+
+a:hover {
+    background-color: floralwhite;
+}
+
+.enclosure {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: 1fr 1fr;
+
+    font-family: sans-serif;
+    background-color: floralwhite;
+    padding: 10px;
+}
+
+content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+
+    background-color: #4297f3;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.chapter {
+    display: grid;
+    background-color: #ffe1f3;
+    grid-template-columns: 120px 70%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+}
