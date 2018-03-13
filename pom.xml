@@ -9,6 +9,13 @@
         <version>1.5.2.RELEASE</version>
     </parent>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <groupId>se.sandboge.japanese</groupId>
     <artifactId>grammar-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -37,9 +44,9 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-            <groupId>se.sandboge.japanese</groupId>
-            <artifactId>grammar-utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>com.github.psandboge</groupId>
+            <artifactId>japanese-grammar-utils</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
