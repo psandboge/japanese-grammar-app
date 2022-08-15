@@ -294,6 +294,9 @@ public class GrammarWeb {
                     case "asPoliteForm":
                         s = adjective.asPoliteForm();
                         break;
+                    case "asPoliteNegForm":
+                        s = adjective.asPoliteNegForm();
+                        break;
                     case "asShortForm":
                         s = adjective.asShortForm();
                         break;
